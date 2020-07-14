@@ -1,9 +1,13 @@
 pipeline {
-    agent { docker { image 'python:3.5.1', args:'-u root:root' } }
+    withDockerContainer { image 'python:3.5.1', args:'-u root:root' } }
     stages {
         stage('build') {
             steps {
-                sh 'python3 --version'
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh 'pip install --user -r requirements.txt'
+                    sh 'python WebChecker.py'
+                }
+                sh "python3 --version"
             }
         }
         stage('test') {
