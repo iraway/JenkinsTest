@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'python:3.5.1' } }
+    agent { docker { image 'robotframework/rfdocker:latest' } }
     stages {
         stage('build') {
             steps {
