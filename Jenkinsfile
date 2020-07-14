@@ -1,12 +1,11 @@
 pipeline {
-    agent none
+    agent {
+            docker {
+                image 'python:3.5.1'
+            }
+        }
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'python:3.5.1'
-                }
-            }
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'pip3 install --user robotframework'
