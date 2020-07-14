@@ -1,9 +1,9 @@
 pipeline {
-    agent { docker { image 'robotframework/rfdocker:latest' } }
+    agent { docker { image 'python:3.5.1' } }
     stages {
         stage('build') {
             steps {
-                sh 'pip3 install robotframework'
+                sh 'python3 --version'
             }
         }
         stage('test') {
