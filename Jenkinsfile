@@ -1,17 +1,21 @@
 pipeline {
-    withDockerContainer { image 'python:3.5.1', args:'-u root:root' } }
+    agent none
     stages {
-        stage('build') {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'python:3.5.1'
+                }
+            }
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh 'pip install --user -r requirements.txt'
-                    sh 'python WebChecker.py'
+                    sh 'pip install --user -r robotframework'
+                    sh 'python3 --version'
                 }
-                sh "python3 --version"
             }
         }
-        stage('test') {
-            steps {
+        stage('Test') {
+        	steps {
                 sh 'python3 -m robot tests.robot'
             }
         }
