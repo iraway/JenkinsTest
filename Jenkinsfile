@@ -8,7 +8,7 @@ pipeline {
         }
         stage('test') {
             steps {
-                sh 'robot tests.robot'
+                sh 'python3 -m robot tests.robot'
             }
         }
     }
