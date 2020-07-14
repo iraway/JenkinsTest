@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Test') {
         	steps {
-                sh 'robot tests.robot'
+                sh 'python3 ./.local/lib/python3.5/site-packages/robot tests.robot'
             }
         }
     }
