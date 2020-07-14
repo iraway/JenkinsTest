@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'sudo pip install -r app/requirements.txt'
+	sh 'apt-get install -y pip3'
+        sh 'pip3 install -r app/requirements.txt'
       }
     }
   }
